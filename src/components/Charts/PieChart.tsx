@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useFilters } from "../../hooks/useFilters";
-import { VictoryPie, VictoryTheme, VictoryLabel } from "victory";
+import { VictoryPie, VictoryTheme, VictoryLabel, VictoryContainer } from "victory";
 import { TaskPriorityEnum } from "../../models/tasks/tasks";
 
 const PriorityPieChart = () => {
@@ -43,7 +43,6 @@ const PriorityPieChart = () => {
         maxWidth: "400px",
         height: "auto",
         margin: "0 auto",
-        touchAction: "none",
       }}
     >
       <VictoryPie
@@ -63,6 +62,7 @@ const PriorityPieChart = () => {
         }}
         theme={VictoryTheme.material}
         animate={{ duration: 500 }}
+        containerComponent={<VictoryContainer responsive={true} />}
       />
     </div>
   );

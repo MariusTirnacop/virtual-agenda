@@ -39,14 +39,16 @@ const Chart = () => {
         maxWidth: "400px",
         height: "auto",
         margin: "0 auto",
-        touchAction: "none",
       }}
     >
       <VictoryChart
         theme={VictoryTheme.material}
         domainPadding={20}
         containerComponent={
-          <VictoryContainer responsive={true} style={{ pointerEvents: "none" }} />
+          <VictoryContainer
+            responsive={true}
+            style={{ userSelect: "auto", pointerEvents: "auto", touchAction: "auto" }}
+          />
         }
         animate={{ duration: 500 }}
         padding={{ top: 20, bottom: 60, left: 50, right: 50 }}
