@@ -80,6 +80,7 @@ const TaskModal = () => {
               slotProps={{
                 input: {
                   readOnly: isReadOnly,
+                  style: isReadOnly ? { pointerEvents: "none" } : {},
                 },
               }}
               value={value.title}
@@ -94,6 +95,7 @@ const TaskModal = () => {
               slotProps={{
                 input: {
                   readOnly: isReadOnly,
+                  style: isReadOnly ? { pointerEvents: "none" } : {},
                 },
               }}
               value={value.description}
@@ -120,6 +122,7 @@ const TaskModal = () => {
                   },
                 }}
                 value={value.priority}
+                style={isReadOnly ? { pointerEvents: "none" } : {}}
                 onChange={(e) =>
                   setValue({
                     ...value,
@@ -138,7 +141,7 @@ const TaskModal = () => {
               </Select>
             </FormControl>
             {!isReadOnly && (
-              <Button sx={{ alignSelf: "flex-end" }} type="submit">
+              <Button sx={{ alignSelf: "flex-end" }} type="submit" variant="contained">
                 {payload ? "Edit task" : "Create task"}
               </Button>
             )}

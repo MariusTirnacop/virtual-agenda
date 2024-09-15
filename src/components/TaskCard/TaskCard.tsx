@@ -108,7 +108,7 @@ const TaskCard = ({ task }: { task: Tasks }) => {
                 }}
                 size="small"
               >
-                <VisibilityIcon />
+                <VisibilityIcon sx={{ color: "primary.main" }} />
               </IconButton>
               <IconButton
                 onClick={() => {
@@ -119,7 +119,7 @@ const TaskCard = ({ task }: { task: Tasks }) => {
                 <EditIcon />
               </IconButton>
               <IconButton onClick={() => deleteTask(task.id)} size="small">
-                <DeleteIcon />
+                <DeleteIcon sx={{ color: "error.main" }} />
               </IconButton>
             </Box>
           </Box>

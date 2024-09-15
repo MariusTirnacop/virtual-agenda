@@ -5,6 +5,7 @@ import PriorityPieChart from "../Charts/PieChart";
 import Sidebar from "../Sidebar/Sidebar";
 
 import { useFilters } from "../../hooks/useFilters";
+import NoTasksFound from "../assets/NoTasksFound";
 
 const Content = () => {
   const { filteredTasks } = useFilters();
@@ -22,10 +23,16 @@ const Content = () => {
           <PriorityPieChart />
         </Stack>
       ) : (
-        <Stack width="100%" height="100%" justifyContent="center" alignItems="center">
-          <Typography marginTop={isTablet ? "20px" : "5px"} fontSize={isTablet ? 25 : 16}>
-            No tasks found
-          </Typography>
+        <Stack
+          width="100%"
+          height="100%"
+          justifyContent="center"
+          alignItems="center"
+          marginTop={isTablet ? "20px" : "15px"}
+          gap={2}
+        >
+          <Typography fontSize={isTablet ? 22 : 16}>No tasks found</Typography>
+          <NoTasksFound width={isTablet ? 250 : 500} height={isTablet ? 200 : 400} />
         </Stack>
       )}
     </Stack>

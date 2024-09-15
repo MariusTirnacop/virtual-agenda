@@ -10,6 +10,7 @@ export const TaskModalContainer = styled(Box)(({ theme }) => ({
   border: "2px solid #000",
   boxShadow: "24px",
   padding: "1.5rem",
+  borderRadius: "1rem",
   [theme.breakpoints.down("sm")]: {
     width: "90%",
     maxWidth: "350px",
