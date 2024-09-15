@@ -53,6 +53,7 @@ const TaskModal = () => {
       editTask(value);
     } else {
       addTask(value);
+      setValue(initialState);
     }
     handleCloseModal();
   };
