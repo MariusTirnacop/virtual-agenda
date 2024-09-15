@@ -43,7 +43,7 @@ const PriorityPieChart = () => {
         maxWidth: "400px",
         height: "auto",
         margin: "0 auto",
-        touchAction: "auto",
+        touchAction: "none",
       }}
     >
       <VictoryPie

@@ -39,7 +39,7 @@ const Chart = () => {
         maxWidth: "400px",
         height: "auto",
         margin: "0 auto",
-        touchAction: "auto",
+        touchAction: "none",
       }}
     >
       <VictoryChart

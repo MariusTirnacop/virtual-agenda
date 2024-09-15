@@ -37,7 +37,7 @@ const TaskCard = ({ task }: { task: Tasks }) => {
   };
 
   return (
-    <Card ref={setNodeRef} style={style} sx={{ my: 1 }}>
+    <Card ref={setNodeRef} style={style} sx={{ my: 1, touchAction: "none" }}>
       <CardContent
         sx={{
           display: "flex",
