@@ -1,50 +1,58 @@
-# React + TypeScript + Vite
+# Virtual Agenda
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Virtual Agenda is a React-based task management application built with TypeScript and Vite. It provides a user-friendly interface for creating, organizing, and tracking tasks.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Create, edit, and delete tasks
+- Drag-and-drop functionality for task status updates
+- Basic and advanced filtering options
+- Visual representations of task data using charts
+- Responsive design for various screen sizes
 
-## Expanding the ESLint configuration
+## Key Components
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. **Task Management**
 
-- Configure the top-level `parserOptions` property like this:
+   - Create tasks with title, description, priority, and start date
+   - Edit existing tasks
+   - Delete tasks
+   - Mark tasks as related to other tasks
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+2. **Task Organization**
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+   - Tasks are organized into three categories: Created, In Progress, and Completed
+   - Drag-and-drop interface for moving tasks between categories
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+3. **Filtering**
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+   - Basic filtering by date
+   - Advanced filtering by date range, title, and status
+
+4. **Data Visualization**
+
+   - Bar chart showing task distribution by status
+   - Pie chart displaying task distribution by priority
+
+5. **Responsive Layout**
+   - Adapts to different screen sizes (desktop, tablet, mobile)
+
+## Technology Stack
+
+- React
+- TypeScript
+- Vite
+- Material-UI (MUI)
+- Victory (for charts)
+- dnd kit (for drag-and-drop functionality)
+- Day.js (for date handling)
+- React Router (for routing)
+
+## Project Structure
+
+The project follows a component-based architecture with context for state management. Key directories include:
+
+- `src/components`: React components
+- `src/contexts`: Context providers for global state
+- `src/hooks`: Custom React hooks
+- `src/models`: TypeScript interfaces and enums
