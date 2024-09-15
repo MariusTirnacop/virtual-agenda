@@ -47,6 +47,7 @@ const PriorityPieChart = () => {
       }}
     >
       <VictoryPie
+        key={JSON.stringify(data)}
         data={data}
         colorScale={colorScale}
         labels={({ datum }) => `${datum.x}: ${datum.y}`}
