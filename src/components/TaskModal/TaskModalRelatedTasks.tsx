@@ -101,7 +101,7 @@ const TaskModalRelatedTasks = ({
                 <Chip
                   sx={{ ml: 0.5 }}
                   key={taskId}
-                  label={task?.id}
+                  label={task?.title}
                   onClick={() => {
                     handleOpenModal(task);
                   }}
