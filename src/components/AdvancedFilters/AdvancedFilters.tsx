@@ -32,6 +32,14 @@ const AdvancedFilters = () => {
     handleAdvancedFilters(startDate, endDate, title, status);
   };
 
+  const showAllTasksAndReset = () => {
+    handleAdvancedFilters(null, null, null, null);
+    setStartDate(dayjs(Date.now()));
+    setEndDate(dayjs(Date.now()));
+    setStatus(TaskStatusEnum.CREATED);
+    setTitle("");
+  };
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <form onSubmit={handleSubmit}>
@@ -85,7 +93,14 @@ const AdvancedFilters = () => {
             error={showError && !title}
           />
 
-          <Button type="submit">Filter</Button>
+          <Stack direction="row" spacing={2}>
+            <Button variant="contained" type="submit">
+              Filter
+            </Button>
+            <Button variant="outlined" type="reset" onClick={showAllTasksAndReset}>
+              Reset
+            </Button>
+          </Stack>
         </Stack>
       </form>
     </LocalizationProvider>

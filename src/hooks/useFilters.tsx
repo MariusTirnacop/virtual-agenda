@@ -8,10 +8,10 @@ import { FilterTypeEnum } from "../models/filters/filters";
 
 type useFiltersReturnType = {
   handleAdvancedFilters: (
-    startDate: Dayjs,
-    endDate: Dayjs,
-    title: string,
-    status: TaskStatusEnum
+    startDate: Dayjs | null,
+    endDate: Dayjs | null,
+    title: string | null,
+    status: TaskStatusEnum | null
   ) => void;
   handleBasicFilters: (taskDate: Dayjs | null) => void;
   filteredTasks: Tasks[];
@@ -42,7 +42,7 @@ export const useFilters = (): useFiltersReturnType => {
       }
       if (filterCriteria.title) {
         newTasks = newTasks.filter((task) =>
-          task.title.toLowerCase().includes(filterCriteria.title.toLowerCase())
+          task.title.toLowerCase().includes(filterCriteria.title?.toLowerCase() ?? "")
         );
       }
       if (filterCriteria.status) {
@@ -61,7 +61,12 @@ export const useFilters = (): useFiltersReturnType => {
   );
 
   const handleAdvancedFilters = useCallback(
-    (startDate: Dayjs, endDate: Dayjs, title: string, status: TaskStatusEnum) => {
+    (
+      startDate: Dayjs | null,
+      endDate: Dayjs | null,
+      title: string | null,
+      status: TaskStatusEnum | null
+    ) => {
       setFilterCriteria({
         ...filterCriteria,
         startDate,

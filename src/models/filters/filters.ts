@@ -8,8 +8,8 @@ export enum FilterTypeEnum {
 
 export type FilterCriteria = {
   taskDate: Dayjs | null;
-  startDate: Dayjs;
-  endDate: Dayjs;
-  title: string;
-  status: TaskStatusEnum;
+  startDate: Dayjs | null;
+  endDate: Dayjs | null;
+  title: string | null;
+  status: TaskStatusEnum | null;
 };
