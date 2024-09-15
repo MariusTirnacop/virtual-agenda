@@ -18,8 +18,11 @@ import {
   TextField,
   Alert,
 } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TaskModalHeader } from "./TaskModalHeader";
 import TaskModalRelatedTasks from "./TaskModalRelatedTasks";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const getInitialState = (startDate: Dayjs): Partial<Tasks> => {
   return {
@@ -39,27 +42,27 @@ const TaskModal = () => {
   const { addTask, editTask, tasks } = useTasksContext();
   const { taskDate } = useFiltersContext();
   const initialState = useMemo(() => getInitialState(taskDate), [taskDate]);
-  const [value, setValue] = useState<Partial<Tasks>>(payload ?? initialState);
+  const [currentTask, setCurrentTask] = useState<Partial<Tasks>>(payload ?? initialState);
   const [showError, setShowError] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!value.title) {
+    if (!currentTask.title) {
       setShowError(true);
       return;
     }
     setShowError(false);
     if (payload) {
-      editTask(value);
+      editTask(currentTask);
     } else {
-      addTask(value);
-      setValue(initialState);
+      addTask(currentTask);
+      setCurrentTask(initialState);
     }
     handleCloseModal();
   };
 
   useEffect(() => {
-    setValue(payload ?? initialState);
+    setCurrentTask(payload ?? initialState);
     setShowError(false);
   }, [payload, initialState]);
 
@@ -83,13 +86,13 @@ const TaskModal = () => {
                   style: isReadOnly ? { pointerEvents: "none" } : {},
                 },
               }}
-              value={value.title}
-              onChange={(e) => setValue({ ...value, title: e.target.value })}
+              value={currentTask.title}
+              onChange={(e) => setCurrentTask({ ...currentTask, title: e.target.value })}
               id="Task Name"
               label="Task Name"
               variant="outlined"
               fullWidth
-              error={showError && !value.title}
+              error={showError && !currentTask.title}
             />
             <TextField
               slotProps={{
@@ -98,16 +101,38 @@ const TaskModal = () => {
                   style: isReadOnly ? { pointerEvents: "none" } : {},
                 },
               }}
-              value={value.description}
-              onChange={(e) => setValue({ ...value, description: e.target.value })}
+              value={currentTask.description}
+              onChange={(e) =>
+                setCurrentTask({ ...currentTask, description: e.target.value })
+              }
               id="Task Description"
               label="Task Description"
               variant="outlined"
               fullWidth
             />
+            {payload && (
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                  label="Start Date"
+                  format="DD/MM/YYYY"
+                  value={currentTask.startDate}
+                  onChange={(newValue) =>
+                    setCurrentTask({ ...currentTask, startDate: newValue || undefined })
+                  }
+                  readOnly={isReadOnly}
+                  slotProps={{
+                    textField: {
+                      fullWidth: true,
+                      variant: "outlined",
+                    },
+                  }}
+                />
+              </LocalizationProvider>
+            )}
+
             <TaskModalRelatedTasks
-              value={value}
-              setValue={setValue}
+              currentTask={currentTask}
+              setCurrentTask={setCurrentTask}
               isReadOnly={isReadOnly}
               tasks={tasks}
               handleOpenModal={handleOpenModal}
@@ -121,11 +146,11 @@ const TaskModal = () => {
                     readOnly: isReadOnly,
                   },
                 }}
-                value={value.priority}
+                value={currentTask.priority}
                 style={isReadOnly ? { pointerEvents: "none" } : {}}
                 onChange={(e) =>
-                  setValue({
-                    ...value,
+                  setCurrentTask({
+                    ...currentTask,
                     priority: e.target.value as TaskPriorityEnum,
                   })
                 }

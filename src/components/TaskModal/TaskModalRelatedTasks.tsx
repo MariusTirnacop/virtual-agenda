@@ -13,25 +13,25 @@ import React from "react";
 import { Tasks } from "../../models/tasks/tasks";
 
 type TaskModalRelatedTasksProps = {
-  value: Partial<Tasks>;
-  setValue: (value: Partial<Tasks>) => void;
+  currentTask: Partial<Tasks>;
+  setCurrentTask: (value: Partial<Tasks>) => void;
   isReadOnly: boolean;
   tasks: Tasks[];
   handleOpenModal: (task: Tasks | undefined) => void;
 };
 
 const TaskModalRelatedTasks = ({
-  value,
-  setValue,
+  currentTask,
+  setCurrentTask,
   isReadOnly,
   tasks,
   handleOpenModal,
 }: TaskModalRelatedTasksProps) => {
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue({ ...value, hasRelatedTasks: e.target.checked });
+    setCurrentTask({ ...currentTask, hasRelatedTasks: e.target.checked });
   };
 
-  const filteredTasks = tasks.filter((task) => task.id !== value.id);
+  const filteredTasks = tasks.filter((task) => task.id !== currentTask.id);
 
   return (
     <>
@@ -39,7 +39,7 @@ const TaskModalRelatedTasks = ({
         sx={{ m: 0 }}
         control={
           <Checkbox
-            checked={value.hasRelatedTasks ?? false}
+            checked={currentTask.hasRelatedTasks ?? false}
             onChange={handleCheckboxChange}
             disabled={isReadOnly}
           />
@@ -48,7 +48,7 @@ const TaskModalRelatedTasks = ({
       />
 
       <>
-        {value.hasRelatedTasks && !isReadOnly && (
+        {currentTask.hasRelatedTasks && !isReadOnly && (
           <FormControl fullWidth>
             <InputLabel id="related-tasks">Related Tasks</InputLabel>
             <Select
@@ -56,10 +56,10 @@ const TaskModalRelatedTasks = ({
               id="related-tasks"
               label="Related Tasks"
               multiple
-              value={value.relatedTaskIds ?? []}
+              value={currentTask.relatedTaskIds ?? []}
               onChange={(e) =>
-                setValue({
-                  ...value,
+                setCurrentTask({
+                  ...currentTask,
                   relatedTaskIds: e.target.value as string[],
                 })
               }
@@ -93,9 +93,9 @@ const TaskModalRelatedTasks = ({
             </Select>
           </FormControl>
         )}
-        {value.hasRelatedTasks && isReadOnly && (
+        {currentTask.hasRelatedTasks && isReadOnly && (
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-            {(value.relatedTaskIds ?? []).map((taskId) => {
+            {(currentTask.relatedTaskIds ?? []).map((taskId) => {
               const task = filteredTasks.find((task) => task.id === taskId);
               return (
                 <Chip
