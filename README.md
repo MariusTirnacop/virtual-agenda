@@ -1,6 +1,7 @@
 # Virtual Agenda
 
-Virtual Agenda is a React-based task management application built with TypeScript and Vite. It provides a user-friendly interface for creating, organizing, and tracking tasks.
+Virtual Agenda is a React-based task management application built with TypeScript and Vite. It provides a user-friendly interface for creating, organizing, and tracking tasks.  
+https://virtual-agenda.netlify.app/
 
 ## Features
 
