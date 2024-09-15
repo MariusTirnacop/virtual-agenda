@@ -11,5 +11,7 @@ export const CategoriesContainerCustom = styled(Box)(({ theme }) => ({
   maxHeight: "100%",
   [theme.breakpoints.down(1250)]: {
     height: "auto",
+    maxHeight: "400px",
+    overflow: "scroll",
   },
 }));
