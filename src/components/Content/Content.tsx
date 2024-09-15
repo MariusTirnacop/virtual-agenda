@@ -23,7 +23,9 @@ const Content = () => {
         </Stack>
       ) : (
         <Stack width="100%" height="100%" justifyContent="center" alignItems="center">
-          <Typography>No tasks found</Typography>
+          <Typography marginTop={isTablet ? "20px" : "5px"} fontSize={isTablet ? 25 : 16}>
+            No tasks found
+          </Typography>
         </Stack>
       )}
     </Stack>
